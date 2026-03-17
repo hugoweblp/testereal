@@ -92,19 +92,6 @@ body:has(a:hover) .cursor-ring{width:50px;height:50px;border-color:var(--gold)}
   transition:opacity .8s ease, visibility .8s ease;
 }
 #loader.hide{opacity:0;visibility:hidden}
-.loader-logo{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(5rem,15vw,10rem);
-  background:linear-gradient(135deg,var(--cyan),var(--magenta));
-  -webkit-background-clip:text;background-clip:text;
-  color:transparent;
-  animation:logoPulse 1.5s ease-in-out infinite alternate;
-  letter-spacing:.05em;
-}
-@keyframes logoPulse{
-  from{filter:drop-shadow(0 0 20px rgba(0,245,255,.4))}
-  to{filter:drop-shadow(0 0 40px rgba(255,0,110,.4))}
-}
 .loader-bar-wrap{
   width:200px;height:1px;
   background:rgba(255,255,255,.1);
@@ -296,13 +283,6 @@ nav.scrolled{
   width:auto;
   object-fit:contain;
 }
-.hero-tag{
-  font-family:'Space Mono',monospace;
-  font-size:.6rem;letter-spacing:.3em;
-  text-transform:uppercase;color:var(--cyan);
-  margin-bottom:1.2rem;
-  opacity:0;animation:fadeUp .8s ease .5s forwards;
-}
 .hero-title{
   font-family:'Bebas Neue',sans-serif;
   font-size:clamp(3rem,8vw,6.5rem);
@@ -312,94 +292,87 @@ nav.scrolled{
   opacity:0;animation:fadeUp .8s ease .7s forwards;
 }
 .hero-title span{
-  background:linear-gradient(135deg,var(--cyan),var(--magenta));
+  background:linear-gradient(120deg,#7afcff 0%,var(--cyan) 45%,#d7fdff 100%);
   -webkit-background-clip:text;background-clip:text;color:transparent;
+  text-shadow:0 0 26px rgba(0,245,255,.45);
+  filter:drop-shadow(0 0 10px rgba(0,245,255,.35));
 }
 .hero-sub{
   font-size:1rem;font-weight:300;color:rgba(232,234,240,.7);
   max-width:500px;margin-top:1.2rem;line-height:1.6;
   opacity:0;animation:fadeUp .8s ease .9s forwards;
 }
-.hero-btns{
-  display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap;
-  opacity:0;animation:fadeUp .8s ease 1.1s forwards;
-}
-/* Botão primário — Power Lab style glow */
+/* Botão primário — energia premium */
 .btn-primary{
-  display:inline-flex;align-items:center;gap:.5rem;
+  position:relative;
+  display:inline-flex;align-items:center;gap:.55rem;
+  padding:14px 26px;
   font-family:'Space Mono',monospace;
-  font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;
-  font-weight:700;padding:.9rem 2rem;
-  background:linear-gradient(135deg,var(--cyan),#0099cc);
-  color:#000;border:none;cursor:pointer;
-  position:relative;overflow:hidden;
-  text-decoration:none;transition:transform .2s;
+  font-weight:600;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  font-size:.75rem;
+  background:linear-gradient(90deg,#00f5ff,#00c8ff);
+  color:#001015;
+  border:none;
+  overflow:hidden;
+  text-decoration:none;
+  box-shadow:0 0 25px rgba(0,245,255,.35),0 8px 30px rgba(0,0,0,.35);
+  transition:all .25s ease;
 }
 .btn-primary::before{
   content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg,transparent 40%,rgba(255,255,255,.3) 50%,transparent 60%);
-  transform:translateX(-100%);transition:transform .5s;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,.4),transparent);
+  transform:translateX(-100%);
+  transition:.6s;
 }
 .btn-primary:hover::before{transform:translateX(100%)}
-.btn-primary:hover{transform:translateY(-2px)}
+.btn-primary:hover{
+  transform:translateY(-2px) scale(1.02);
+  box-shadow:0 0 40px rgba(0,245,255,.6),0 12px 40px rgba(0,0,0,.45);
+}
+.btn-primary:active{transform:translateY(1px) scale(.98)}
 
-/* Botão secundário — border animada */
+/* Botão secundário — elegante premium */
 .btn-secondary{
   display:inline-flex;align-items:center;gap:.5rem;
+  padding:14px 26px;
   font-family:'Space Mono',monospace;
-  font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;
-  font-weight:700;padding:.9rem 2rem;
-  background:transparent;color:var(--text);
+  font-weight:600;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  font-size:.75rem;
+  background:transparent;
+  color:#e6faff;
   border:1px solid rgba(255,255,255,.2);
-  cursor:pointer;text-decoration:none;
-  transition:border-color .3s,color .3s,transform .2s;
-  position:relative;
+  backdrop-filter:blur(6px);
+  text-decoration:none;
+  transition:all .25s ease;
 }
 .btn-secondary:hover{
-  border-color:var(--cyan);color:var(--cyan);
+  border-color:#00f5ff;
+  color:#00f5ff;
+  box-shadow:0 0 15px rgba(0,245,255,.2);
   transform:translateY(-2px);
-  box-shadow:0 0 20px rgba(0,245,255,.15);
 }
 
-/* Prova rápida */
-.hero-proof{
-  display:flex;gap:2rem;margin-top:2.5rem;flex-wrap:wrap;
-  opacity:0;animation:fadeUp .8s ease 1.3s forwards;
+.hero-btns{
+  display:flex;
+  gap:18px;
+  margin-top:2rem;
+  flex-wrap:wrap;
+  opacity:0;animation:fadeUp .8s ease 1.1s forwards;
 }
-.proof-item{
-  display:flex;flex-direction:column;gap:.2rem;
-}
-.proof-num{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:1.8rem;letter-spacing:.05em;
-  color:var(--cyan);line-height:1;
-}
-.proof-label{
-  font-family:'Space Mono',monospace;
-  font-size:.5rem;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--muted);
-}
+.hero-btns a{display:inline-flex;align-items:center;transition:all .25s ease}
 
-/* Scroll indicator */
-.scroll-indicator{
-  position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
-  display:flex;flex-direction:column;align-items:center;gap:.5rem;
-  opacity:0;animation:fadeIn 1s ease 2s forwards;
-}
-.scroll-indicator span{
-  font-family:'Space Mono',monospace;
-  font-size:.45rem;letter-spacing:.3em;color:var(--muted);
-  text-transform:uppercase;
-}
-.scroll-line{
-  width:1px;height:40px;background:linear-gradient(to bottom,var(--muted),transparent);
-  animation:scrollPulse 2s ease-in-out infinite;
-}
-@keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(.5)}50%{opacity:1;transform:scaleY(1)}}
 @keyframes heroLight{
   0%{transform:translate(-10px,-52%) scale(1.00)}
   50%{transform:translate(20px,-48%) scale(1.12)}
   100%{transform:translate(-35px,-54%) scale(1.24)}
+}
+@keyframes heroPulse{
+  0%,100%{opacity:.45;transform:translate3d(0,0,0) scale(1)}
+  50%{opacity:.72;transform:translate3d(-12px,8px,0) scale(1.06)}
 }
 
 /* ═══════════════════════════════════════════
@@ -1103,6 +1076,64 @@ body[data-section="contato"]::after{background:radial-gradient(ellipse at 50% 50
   .processo-steps::before{display:none}
   .vira-grid{gap:2rem}
 }
+@media(min-width:769px){
+  #hero{
+    align-items:stretch;
+  }
+  #hero::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(circle at 79% 52%, rgba(0,245,255,.16) 0%, rgba(0,245,255,.05) 28%, transparent 58%),
+      radial-gradient(circle at 64% 82%, rgba(123,47,255,.12) 0%, transparent 45%),
+      linear-gradient(to top, rgba(2,4,10,.86) 0%, transparent 28%);
+    pointer-events:none;
+    z-index:1;
+    animation:heroPulse 16s ease-in-out infinite;
+  }
+  .hero-content{
+    width:min(100%, 1280px);
+    padding:0 3.5rem 5.5rem;
+    align-items:flex-end;
+  }
+  .hero-panel{
+    max-width:560px;
+    padding:0;
+    border:none;
+    background:transparent;
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+    box-shadow:none;
+  }
+  .hero-panel::before,
+  .hero-panel::after{display:none}
+  .hero-title{font-size:clamp(4rem,7vw,6.3rem)}
+  .hero-sub{
+    max-width:470px;
+    color:rgba(232,234,240,.78);
+  }
+  .hero-daniel{
+    right:clamp(1.4rem,5vw,5rem);
+    height:min(92vh, 950px);
+    filter:
+      drop-shadow(0 0 42px rgba(0,245,255,.18))
+      drop-shadow(0 32px 110px rgba(0,0,0,.52));
+  }
+  .hero-daniel::before{
+    content:'';
+    position:absolute;
+    right:4%;
+    bottom:8%;
+    width:62%;
+    height:38%;
+    background:radial-gradient(circle at center, rgba(0,245,255,.34), rgba(0,245,255,0));
+    filter:blur(46px);
+    z-index:-1;
+    opacity:.8;
+    pointer-events:none;
+  }
+}
 @media(max-width:768px){
   body{cursor:auto}
   .cursor,.cursor-ring{display:none}
@@ -1145,7 +1176,6 @@ body[data-section="contato"]::after{background:radial-gradient(ellipse at 50% 50
   .vira-grid{grid-template-columns:1fr}
   .portfolio-grid{grid-template-columns:1fr}
   .processo-steps{grid-template-columns:1fr}
-  .hero-proof{gap:1.2rem}
   footer{flex-direction:column;align-items:flex-start}
 }
 @media(max-width:480px){
@@ -1163,7 +1193,6 @@ body[data-section="contato"]::after{background:radial-gradient(ellipse at 50% 50
     bottom:-10px;
     opacity:.28;
   }
-  .scroll-indicator{bottom:1.1rem}
   .section-title{font-size:2rem}
   .contato-btns{flex-direction:column;align-items:center}
   .vira-photos{grid-template-columns:1fr}
@@ -1182,7 +1211,6 @@ body[data-section="contato"]::after{background:radial-gradient(ellipse at 50% 50
 
 <!-- LOADER -->
 <div id="loader">
-  <div class="loader-logo">DQ</div>
   <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
   <div class="loader-text">Carregando experiência</div>
 </div>
@@ -1227,11 +1255,8 @@ body[data-section="contato"]::after{background:radial-gradient(ellipse at 50% 50
 
   <div class="hero-content">
     <div class="hero-panel">
-      <div class="hero-tag">Videomaker · Publicitário · Santarém, PA</div>
       <h1 class="hero-title">
-        Vídeos que<br>
-        <span>transformam</span><br>
-        sua marca
+        Vídeos que <span>transformam</span> sua marca
       </h1>
       <p class="hero-sub">
         Não entrego apenas um vídeo bonito.<br>
@@ -1244,30 +1269,11 @@ body[data-section="contato"]::after{background:radial-gradient(ellipse at 50% 50
         </a>
         <a href="#portfolio" class="btn-secondary">Ver Portfólio</a>
       </div>
-      <div class="hero-proof">
-        <div class="proof-item">
-          <span class="proof-num" data-count="10">+10</span>
-          <span class="proof-label">Campanhas Eleitorais</span>
-        </div>
-        <div class="proof-item">
-          <span class="proof-num">Vira Brasil</span>
-          <span class="proof-label">Credencial Oficial</span>
-        </div>
-        <div class="proof-item">
-          <span class="proof-num">Santarém</span>
-          <span class="proof-label">Pará · Brasil</span>
-        </div>
-      </div>
     </div>
   </div>
 
   <div class="hero-daniel" aria-hidden="true">
     <img src="danielhero.webp" alt="">
-  </div>
-
-  <div class="scroll-indicator">
-    <span>Role para explorar</span>
-    <div class="scroll-line"></div>
   </div>
 </section>
 
