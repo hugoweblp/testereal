@@ -401,6 +401,10 @@ nav.scrolled{
   50%{transform:translate(20px,-48%) scale(1.12)}
   100%{transform:translate(-35px,-54%) scale(1.24)}
 }
+@keyframes heroPulse{
+  0%,100%{opacity:.45;transform:translate3d(0,0,0) scale(1)}
+  50%{opacity:.72;transform:translate3d(-12px,8px,0) scale(1.06)}
+}
 
 /* ═══════════════════════════════════════════
    SEÇÃO PROBLEMA
@@ -1102,6 +1106,68 @@ body[data-section="contato"]::after{background:radial-gradient(ellipse at 50% 50
   .processo-steps{grid-template-columns:1fr 1fr;gap:2rem}
   .processo-steps::before{display:none}
   .vira-grid{gap:2rem}
+}
+@media(min-width:769px){
+  #hero{
+    align-items:stretch;
+  }
+  #hero::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(circle at 79% 52%, rgba(0,245,255,.16) 0%, rgba(0,245,255,.05) 28%, transparent 58%),
+      radial-gradient(circle at 64% 82%, rgba(123,47,255,.12) 0%, transparent 45%),
+      linear-gradient(to top, rgba(2,4,10,.86) 0%, transparent 28%);
+    pointer-events:none;
+    z-index:1;
+    animation:heroPulse 16s ease-in-out infinite;
+  }
+  .hero-content{
+    width:min(100%, 1280px);
+    padding:0 3.5rem 5.5rem;
+    align-items:flex-end;
+  }
+  .hero-panel{
+    max-width:560px;
+    padding:0;
+    border:none;
+    background:transparent;
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+    box-shadow:none;
+  }
+  .hero-panel::before,
+  .hero-panel::after{display:none}
+  .hero-title{font-size:clamp(4rem,7vw,6.3rem)}
+  .hero-sub{
+    max-width:470px;
+    color:rgba(232,234,240,.78);
+  }
+  .hero-daniel{
+    right:clamp(1.4rem,5vw,5rem);
+    height:min(92vh, 950px);
+    filter:
+      drop-shadow(0 0 42px rgba(0,245,255,.18))
+      drop-shadow(0 32px 110px rgba(0,0,0,.52));
+  }
+  .hero-daniel::before{
+    content:'';
+    position:absolute;
+    right:4%;
+    bottom:8%;
+    width:62%;
+    height:38%;
+    background:radial-gradient(circle at center, rgba(0,245,255,.34), rgba(0,245,255,0));
+    filter:blur(46px);
+    z-index:-1;
+    opacity:.8;
+    pointer-events:none;
+  }
+  .hero-proof{
+    margin-top:2.2rem;
+    gap:1.6rem;
+  }
 }
 @media(max-width:768px){
   body{cursor:auto}
