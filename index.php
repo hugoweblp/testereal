@@ -1099,7 +1099,7 @@ nav.scrolled{
   .quem-picture{
     width:420px;
     max-width:none;
-    margin-left:1rem;
+    margin-left:-0.7rem;
     margin-bottom:-1.2rem;
   }
   .quem-provas{
