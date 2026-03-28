@@ -785,7 +785,7 @@ nav.scrolled{
 ═══════════════════════════════════════════ */
 #quem-sou{
   position:relative;
-  overflow:hidden;
+  overflow:hidden; /* 🛡️ BLINDAGEM: Garante que o texto e cards fiquem no centro */
   min-height:100vh  ;
   padding:6rem 1.25rem;
   display:flex;
@@ -1099,7 +1099,7 @@ nav.scrolled{
   .quem-picture{
     width:420px;
     max-width:none;
-    margin-left:-1.2rem;
+    margin-left:1rem;
     margin-bottom:-1.2rem;
   }
   .quem-provas{
@@ -1148,7 +1148,7 @@ nav.scrolled{
   .quem-picture{
     width:520px;
     max-width:none;
-    margin-left:0; transform:translateX(-3rem);
+    margin-left:-8rem; /* 🛠️ MANUAL: Tente -5rem ou -4rem para trazer o rosto pro centro */
     margin-bottom:-1.2rem;
   }
   .quem-visual::before{
@@ -1640,8 +1640,7 @@ nav.scrolled{
 .contato-bg::before{
   content:'';position:absolute;inset:0;
   background:
-    radial-gradient(ellipse at 30% 50%,rgba(0,245,255,.05) 0%,transparent 50%),
-    radial-gradient(ellipse at 70% 50%,rgba(255,0,110,.04) 0%,transparent 50%);
+    radial-gradient(ellipse at 70% 50%,rgba(0,245,255,.04) 0%,transparent 50%);
 }
 /* Scanlines */
 .contato-bg::after{
@@ -1653,7 +1652,7 @@ nav.scrolled{
 }
 .contato-content{
   position:relative;z-index:1;
-  max-width:700px;margin:0 auto;
+  max-width:720px;margin:0 auto;
   text-align:center;
 }
 .contato-pre{
@@ -1664,24 +1663,25 @@ nav.scrolled{
 }
 .contato-title{
   font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(2.5rem,6vw,4.5rem);
-  line-height:1;letter-spacing:.03em;
-  margin-bottom:1rem;
+  font-size:clamp(2rem, 4vw, 3rem);
+  line-height:1.1;letter-spacing:-0.01em;
+  color:rgba(255,255,255,0.9);
+  margin-bottom:1.5rem;
 }
 .contato-title span{
-  background:linear-gradient(135deg,var(--cyan),var(--magenta));
+  background:linear-gradient(90deg, #22d3ee, #38bdf8);
   -webkit-background-clip:text;background-clip:text;color:transparent;
 }
 .contato-sub{
-  font-size:1.05rem;font-weight:400;
-  color:var(--text-secondary);margin-bottom:2.5rem;line-height:1.7;
+  font-size:15px;font-weight:400;
+  color:rgba(255,255,255,0.65);margin-bottom:2.5rem;line-height:1.6;
   max-width:42ch;margin-left:auto;margin-right:auto;
 }
 .contato-escassez{
   font-family:'Space Mono',monospace;
   font-size:.62rem;letter-spacing:.25em;
   text-transform:uppercase;
-  color:var(--magenta);margin-bottom:2.5rem;
+  color:var(--cyan);margin-bottom:2.5rem;
   font-weight:700;
   animation:subtle-pulse 2s ease-in-out infinite;
 }
@@ -2026,7 +2026,7 @@ section{
 #problema.section-overlap,
 #servicos.section-overlap,
 #contato.section-overlap{
-  overflow:hidden;
+  overflow:hidden; /* 🛡️ BLINDAGEM: Garante que o texto e cards fiquem no centro */
 }
 #problema.section-overlap{ z-index:5; }
 #servicos.section-overlap{ z-index:4; }
