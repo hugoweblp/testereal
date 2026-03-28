@@ -1,19 +1,19 @@
-<?php
-// ═══════════════════════════════════════════════════════════════════════════════
-// 🔐 SECURITY HEADERS - Proteção contra múltiplos tipos de ataque
-// ═══════════════════════════════════════════════════════════════════════════════
+﻿<?php
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ðŸ” SECURITY HEADERS - ProteÃ§Ã£o contra mÃºltiplos tipos de ataque
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 header('X-Frame-Options: DENY');  // Previne clickjacking
-header('X-Content-Type-Options: nosniff');  // Força respeitar tipo MIME
-header('X-XSS-Protection: 1; mode=block');  // Proteção XSS em navegadores antigos
-header('Strict-Transport-Security: max-age=31536000; includeSubDomains');  // Força HTTPS
+header('X-Content-Type-Options: nosniff');  // ForÃ§a respeitar tipo MIME
+header('X-XSS-Protection: 1; mode=block');  // ProteÃ§Ã£o XSS em navegadores antigos
+header('Strict-Transport-Security: max-age=31536000; includeSubDomains');  // ForÃ§a HTTPS
 header("Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self';");
 header('Referrer-Policy: strict-origin-when-cross-origin');  // Controla dados de referrer
 
-// ═══════════════════════════════════════════════════════════════════════════════
-// 🔐 ERROR HANDLING SEGURO - Logging sem expor informações
-// ═══════════════════════════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ðŸ” ERROR HANDLING SEGURO - Logging sem expor informaÃ§Ãµes
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 if (getenv('APP_ENV') !== 'development') {
-    error_reporting(0);  // Em produção, não exibir erros
+    error_reporting(0);  // Em produÃ§Ã£o, nÃ£o exibir erros
     ini_set('display_errors', 0);
 } else {
     error_reporting(E_ALL);
@@ -29,12 +29,12 @@ ini_set('error_log', __DIR__ . '/../logs/php_errors.log');
 
 require_once __DIR__ . '/admin/config.php';
 
-// ═══════════════════════════════════════════════════════════════════════════════
-// 🔐 FUNÇÕES DE SEGURANÇA MELHORADAS
-// ═══════════════════════════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ðŸ” FUNÃ‡Ã•ES DE SEGURANÃ‡A MELHORADAS
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 /**
- * Escapa HTML - Proteção contra XSS
+ * Escapa HTML - ProteÃ§Ã£o contra XSS
  * @param string|null $value Valor a ser escapado
  * @return string Valor escapado ou string vazia
  */
@@ -46,12 +46,12 @@ function e(?string $value): string {
 }
 
 /**
- * Obtém primeira letra do nome com validação robusta
+ * ObtÃ©m primeira letra do nome com validaÃ§Ã£o robusta
  * @param string $name Nome a processar
- * @return string Primeira letra maiúscula ou '?'
+ * @return string Primeira letra maiÃºscula ou '?'
  */
 function initial(string $name): string {
-    // Validação de tamanho para evitar abuse
+    // ValidaÃ§Ã£o de tamanho para evitar abuse
     if (strlen($name) > 255 || strlen($name) === 0) {
         return '?';
     }
@@ -61,7 +61,7 @@ function initial(string $name): string {
         return '?';
     }
 
-    // Usar funções multi-byte para UTF-8 correto, com fallback seguro
+    // Usar funÃ§Ãµes multi-byte para UTF-8 correto, com fallback seguro
     if (function_exists('mb_substr') && function_exists('mb_strtoupper')) {
         return mb_strtoupper(mb_substr($name, 0, 1, 'UTF-8'), 'UTF-8');
     }
@@ -70,15 +70,15 @@ function initial(string $name): string {
 }
 
 /**
- * Obtém depoimentos ativos com Prepared Statements (Proteção SQL Injection)
+ * ObtÃ©m depoimentos ativos com Prepared Statements (ProteÃ§Ã£o SQL Injection)
  * @return array Array de depoimentos ou vazio se erro
  */
 function getDepoimentos(): array {
     try {
         $db = getDB();
         
-        // ✅ PREPARED STATEMENT - Proteção contra SQL Injection
-        // 🔐 CORRIGIDO: Usando os campos corretos da tabela depoimentos
+        // âœ… PREPARED STATEMENT - ProteÃ§Ã£o contra SQL Injection
+        // ðŸ” CORRIGIDO: Usando os campos corretos da tabela depoimentos
         $stmt = $db->prepare(
             "SELECT id, nome, empresa, comentario, foto, ativo
              FROM depoimentos 
@@ -95,30 +95,30 @@ function getDepoimentos(): array {
         return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
         
     } catch (PDOException $e) {
-        // Log seguro - não expõe ao usuário
+        // Log seguro - nÃ£o expÃµe ao usuÃ¡rio
         error_log('[DATABASE_ERROR] ' . date('Y-m-d H:i:s') . ' - Depoimentos: ' . $e->getMessage());
         return [];
         
     } catch (Throwable $e) {
-        // Catch genérico
+        // Catch genÃ©rico
         error_log('[UNEXPECTED_ERROR] ' . date('Y-m-d H:i:s') . ' - Depoimentos: ' . $e->getMessage());
         return [];
     }
 }
 
-// Obter depoimentos com segurança
+// Obter depoimentos com seguranÃ§a
 $depoimentos = getDepoimentos();
 
 /**
- * Obtém vídeos do portfólio agrupados por slot
- * @return array Array de vídeos agrupados por slot
+ * ObtÃ©m vÃ­deos do portfÃ³lio agrupados por slot
+ * @return array Array de vÃ­deos agrupados por slot
  */
 function getVideos(): array {
     try {
         $db = getDB();
         
-        // ✅ PREPARED STATEMENT - Proteção contra SQL Injection
-        // 🔐 Busca vídeos do banco de dados agrupados por slot
+        // âœ… PREPARED STATEMENT - ProteÃ§Ã£o contra SQL Injection
+        // ðŸ” Busca vÃ­deos do banco de dados agrupados por slot
         $stmt = $db->prepare(
             "SELECT id, slot, titulo, youtube_url, ordem, ativo
              FROM portfolio_videos 
@@ -147,19 +147,19 @@ function getVideos(): array {
         
     } catch (PDOException $e) {
         // Log seguro
-        error_log('[DATABASE_ERROR] ' . date('Y-m-d H:i:s') . ' - Vídeos: ' . $e->getMessage());
+        error_log('[DATABASE_ERROR] ' . date('Y-m-d H:i:s') . ' - VÃ­deos: ' . $e->getMessage());
         return [];
         
     } catch (Throwable $e) {
-        // Catch genérico
-        error_log('[UNEXPECTED_ERROR] ' . date('Y-m-d H:i:s') . ' - Vídeos: ' . $e->getMessage());
+        // Catch genÃ©rico
+        error_log('[UNEXPECTED_ERROR] ' . date('Y-m-d H:i:s') . ' - VÃ­deos: ' . $e->getMessage());
         return [];
     }
 }
 
 /**
- * 🎥 Detecta orientação do vídeo (vertical/horizontal)
- * Identifica se é Shorts (9:16) ou vídeo normal (16:9)
+ * ðŸŽ¥ Detecta orientaÃ§Ã£o do vÃ­deo (vertical/horizontal)
+ * Identifica se Ã© Shorts (9:16) ou vÃ­deo normal (16:9)
  */
 function detectarOrientacaoVideo(string $youtubeUrl): string {
     // Extrair ID do YouTube
@@ -170,7 +170,7 @@ function detectarOrientacaoVideo(string $youtubeUrl): string {
         return 'horizontal'; // default
     }
     
-    // Se URL contém "shorts", é vertical
+    // Se URL contÃ©m "shorts", Ã© vertical
     if (strpos($youtubeUrl, 'shorts') !== false) {
         return 'vertical';
     }
@@ -195,24 +195,24 @@ function detectarOrientacaoVideo(string $youtubeUrl): string {
                 $width = (int)$data['width'];
                 $height = (int)$data['height'];
                 
-                // Se altura > largura, é vertical (shorts)
+                // Se altura > largura, Ã© vertical (shorts)
                 return ($height > $width) ? 'vertical' : 'horizontal';
             }
         }
     } catch (Exception $e) {
-        error_log('Erro ao detectar orientação: ' . $e->getMessage());
+        error_log('Erro ao detectar orientaÃ§Ã£o: ' . $e->getMessage());
     }
     
     return 'horizontal'; // default
 }
 
 /**
- * 🎥 Enriquece vídeos com informações de orientação
+ * ðŸŽ¥ Enriquece vÃ­deos com informaÃ§Ãµes de orientaÃ§Ã£o
  */
 function getVideosComOrientacao(): array {
     $videosPorSlot = getVideos();
     
-    // Adicionar informação de orientação a cada vídeo
+    // Adicionar informaÃ§Ã£o de orientaÃ§Ã£o a cada vÃ­deo
     foreach ($videosPorSlot as &$videos) {
         foreach ($videos as &$video) {
             $video['orientacao'] = detectarOrientacaoVideo($video['youtube_url']);
@@ -226,15 +226,15 @@ function getVideosComOrientacao(): array {
     return $videosPorSlot;
 }
 
-// 🎥 Buscar vídeos com orientação detectada
+// ðŸŽ¥ Buscar vÃ­deos com orientaÃ§Ã£o detectada
 $videosPorSlot = getVideosComOrientacao();
 
-// 🎥 Definir slots com labels e ícones (Estética Premium sem Emojis)
+// ðŸŽ¥ Definir slots com labels e Ã­cones (EstÃ©tica Premium sem Emojis)
 $slots = [
-    'politica' => ['label' => 'Publicidade Política', 'letter' => 'P'],
-    'imoveis' => ['label' => 'Marketing Imobiliário', 'letter' => 'I'],
+    'politica' => ['label' => 'Publicidade PolÃ­tica', 'letter' => 'P'],
+    'imoveis' => ['label' => 'Marketing ImobiliÃ¡rio', 'letter' => 'I'],
     'eventos' => ['label' => 'Cobertura de Eventos', 'letter' => 'E'],
-    'audiovisual' => ['label' => 'Produção Audiovisual', 'letter' => 'A'],
+    'audiovisual' => ['label' => 'ProduÃ§Ã£o Audiovisual', 'letter' => 'A'],
 ];
 ?>
 
@@ -243,24 +243,24 @@ $slots = [
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Daniel Queiroz — Videomaker e Publicitário em Santarém, PA. Produções cinematográficas para marcas, campanhas eleitorais e marketing imobiliário.">
-<meta property="og:title" content="Daniel Queiroz — Videomaker">
-<meta property="og:description" content="Vídeos cinematográficos que transformam sua marca em autoridade.">
+<meta name="description" content="Daniel Queiroz â€” Videomaker e PublicitÃ¡rio em SantarÃ©m, PA. ProduÃ§Ãµes cinematogrÃ¡ficas para marcas, campanhas eleitorais e marketing imobiliÃ¡rio.">
+<meta property="og:title" content="Daniel Queiroz â€” Videomaker">
+<meta property="og:description" content="VÃ­deos cinematogrÃ¡ficos que transformam sua marca em autoridade.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#02040a">
-<!-- 🔐 Security Meta Tags -->
+<!-- ðŸ” Security Meta Tags -->
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>Daniel Queiroz — Videomaker</title>
+<title>Daniel Queiroz â€” Videomaker</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-/* ═══════════════════════════════════════════
-   RESET + VARIÁVEIS
-═══════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   RESET + VARIÃVEIS
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
   --cyan:#00f5ff;
@@ -300,9 +300,9 @@ body.menu-open{overflow:hidden}
   outline-offset:3px;
 }
 
-/* ═══════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    CURSOR CUSTOMIZADO
-═══════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .cursor{
   position:fixed;width:10px;height:10px;
   background:var(--cyan);border-radius:50%;
@@ -321,9 +321,9 @@ body.menu-open{overflow:hidden}
 body:has(a:hover) .cursor{background:var(--gold);transform:translate(-50%,-50%) scale(1.5)}
 body:has(a:hover) .cursor-ring{width:50px;height:50px;border-color:var(--gold)}
 
-/* ═══════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    GRAIN OVERLAY
-═══════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .grain{
   position:fixed;inset:0;pointer-events:none;z-index:9990;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
@@ -336,9 +336,9 @@ body:has(a:hover) .cursor-ring{width:50px;height:50px;border-color:var(--gold)}
 }
 @keyframes grain{0%,100%{transform:translate(0,0)}25%{transform:translate(-1px,1px)}50%{transform:translate(1px,-1px)}75%{transform:translate(-1px,1px)}}
 
-/* ═══════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    LOADER
-═══════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 #loader{
   position:fixed;inset:0;z-index:9000;
   background:var(--dark);
@@ -378,9 +378,9 @@ body:has(a:hover) .cursor-ring{width:50px;height:50px;border-color:var(--gold)}
   text-transform:uppercase;
 }
 
-/* ═══════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    LETTERBOX
-═══════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .letterbox-top,.letterbox-bottom{
   position:fixed;left:0;right:0;
   height:60px;background:var(--dark);
@@ -391,9 +391,9 @@ body:has(a:hover) .cursor-ring{width:50px;height:50px;border-color:var(--gold)}
 .letterbox-top.open{transform:translateY(-100%)}
 .letterbox-bottom.open{transform:translateY(100%)}
 
-/* ═══════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    NAV
-═══════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 nav{
   position:fixed;top:0;left:0;right:0;
   z-index:7000;padding:1.2rem 2rem;
@@ -436,9 +436,9 @@ nav.scrolled{
   background:var(--text);transition:.3s;
 }
 
-/* ═══════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    HERO
-═══════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 #hero{
   position:relative;
   min-height:100vh;
@@ -649,9 +649,9 @@ nav.scrolled{
   100%{transform:translate3d(3%,1%,0) scale(1.08);opacity:.84}
 }
 
-/* ═══════════════════════════════════════════
-   SEÇÃO PROBLEMA
-═══════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   SEÃ‡ÃƒO PROBLEMA
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 #problema{
   padding:7rem 2rem;
   background:
@@ -777,12 +777,12 @@ nav.scrolled{
   line-height:1.68;
 }
 
-/* ═══════════════════════════════════════════
-   SEÇÃO QUEM SOU
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   SEÃ‡ÃƒO QUEM SOU
 
 
 
-═══════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 #quem-sou{
   position:relative;
   overflow:visible;
@@ -1099,7 +1099,7 @@ nav.scrolled{
   .quem-picture{
     width:420px;
     max-width:none;
-    margin-left:-1.2rem;
+    margin-left:1rem;
     margin-bottom:-1.2rem;
   }
   .quem-provas{
@@ -1218,9 +1218,9 @@ nav.scrolled{
   }
 }
 
-/* ═══════════════════════════════════════════
-   SEÇÃO SERVIÇOS
-═══════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   SEÃ‡ÃƒO SERVIÃ‡OS
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 #servicos{
   padding:7rem 2rem;
   background:var(--dark);
@@ -1295,9 +1295,9 @@ nav.scrolled{
 }
 .servico-card.destaque .servico-tag{color:var(--magenta)}
 
-/* ═══════════════════════════════════════════
-   PORTFÓLIO
-═══════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   PORTFÃ“LIO
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 #portfolio{
   padding:6rem 2rem;
   background:var(--dark2);
@@ -1379,9 +1379,9 @@ nav.scrolled{
 }
 .portfolio-note span{color:var(--cyan)}
 
-/* ═══════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    VIRA BRASIL
-═══════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 #vira-brasil{
   padding:6rem 2rem;
   background:var(--dark);
@@ -1430,9 +1430,9 @@ nav.scrolled{
 }
 .vira-text strong{color:var(--gold);font-weight:600}
 
-/* ═══════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    PROCESSO
-═══════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 #processo{
   padding:6rem 2rem;
   background:var(--dark2);
@@ -1501,9 +1501,9 @@ nav.scrolled{
   color:var(--text-secondary);line-height:1.6;
 }
 
-/* ═══════════════════════════════════════════
-   DEPOIMENTOS — Holographic
-═══════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   DEPOIMENTOS â€” Holographic
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 #depoimentos{
   padding:6rem 2rem;
   background:var(--dark);
@@ -1582,9 +1582,9 @@ nav.scrolled{
 }
 
 
-/* ═══════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    FAQ
-═══════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 #faq{
   padding:6rem 2rem;
   background:var(--dark2);
@@ -1625,9 +1625,9 @@ nav.scrolled{
   max-height:300px;padding-bottom:1.4rem;
 }
 
-/* ═══════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    CTA FINAL
-═══════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 #contato{
   position:relative;padding:8rem 2rem;
   overflow:hidden;
@@ -1709,9 +1709,9 @@ nav.scrolled{
 }
 .contato-link svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.5}
 
-/* ═══════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    FOOTER
-═══════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 footer{
   padding:2rem;background:var(--dark);
   border-top:1px solid var(--glass-border);
@@ -1729,9 +1729,9 @@ footer{
   text-transform:uppercase;color:var(--muted);
 }
 
-/* ═══════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    WHATSAPP FLUTUANTE
-═══════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .wa-btn{
   position:fixed;bottom:2rem;right:2rem;z-index:6000;
   width:52px;height:52px;
@@ -1749,9 +1749,9 @@ footer{
   50%{box-shadow:0 4px 35px rgba(37,211,102,.7),0 0 0 8px rgba(37,211,102,.1)}
 }
 
-/* ═══════════════════════════════════════════
-   BACKGROUND GRADIENTE RESPONSIVO POR SEÇÃO
-═══════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   BACKGROUND GRADIENTE RESPONSIVO POR SEÃ‡ÃƒO
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 body::after{
   content:'';position:fixed;inset:0;pointer-events:none;
   z-index:-1;transition:background 1.2s ease;
@@ -1765,9 +1765,9 @@ body[data-section="vira-brasil"]::after{background:radial-gradient(ellipse at 50
 body[data-section="depoimentos"]::after{background:radial-gradient(ellipse at 50% 50%,rgba(255,215,0,.03) 0%,transparent 60%)}
 body[data-section="contato"]::after{background:radial-gradient(ellipse at 50% 50%,rgba(0,245,255,.04) 0%,transparent 60%)}
 
-/* ═══════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    SCROLL REVEAL
-═══════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
 .reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .7s ease,transform .7s ease}
@@ -1780,9 +1780,9 @@ body[data-section="contato"]::after{background:radial-gradient(ellipse at 50% 50
 .reveal-delay-4{transition-delay:.4s}
 
 
-/* ═══════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    ULTRA PREMIUM DESIGN SYSTEM
-═══════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 body::before{
   content:'';
   position:fixed;
@@ -1999,9 +1999,9 @@ section{
 }
 
 
-/* ═══════════════════════════════════════════
-   SECTION OVERLAY CINEMATOGRÁFICO
-═══════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   SECTION OVERLAY CINEMATOGRÃFICO
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .section-overlap{
   position:relative;
   margin-top:-88px;
@@ -2049,9 +2049,9 @@ section{
 }
 
 
-/* ═══════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    VIEWPORT ACTIVATION TEST
-═══════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 @media(max-width:980px){
   .grain{
     display:none;
@@ -2121,9 +2121,9 @@ section{
 }
 
 
-/* ═══════════════════════════════════════════
-   SECTION ACTIVATION — PÁGINA INTEIRA
-═══════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   SECTION ACTIVATION â€” PÃGINA INTEIRA
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 #hero .hero-kicker,
 #hero .hero-title,
 #hero .hero-dynamic-wrap,
@@ -2353,9 +2353,9 @@ section{
 }
 
 
-/* ═══════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    DEVICE PROFILES / LITE MODE
-═══════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 html.touch-device .cursor,
 html.touch-device .cursor-ring{
   display:none !important;
@@ -2461,18 +2461,18 @@ html.lite-mode .faq-item{
   }
 }
 
-/* ═══════════════════════════════════════════
-   UTILITÁRIOS
-═══════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   UTILITÃRIOS
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .container{max-width:1100px;margin:0 auto}
 @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 .text-cyan{color:var(--cyan)}
 .text-magenta{color:var(--magenta)}
 
-/* ═══════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    RESPONSIVIDADE
-═══════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 @media(max-width:1024px){
   .quem-grid{gap:3rem}
   .processo-steps{grid-template-columns:1fr 1fr;gap:2rem}
@@ -2696,7 +2696,7 @@ html.lite-mode .faq-item{
 }
 
 
-/* === FIX REAL DO TÍTULO DINÂMICO EM PROCESSO === */
+/* === FIX REAL DO TÃTULO DINÃ‚MICO EM PROCESSO === */
 .processo-title-dynamic{
   min-height: 2.2em;
 }
@@ -2736,9 +2736,9 @@ html.lite-mode .faq-item{
   }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════════
-   🎥 CARROSSEL DE VÍDEOS COM SWIPER - ESTILOS CUSTOMIZADOS
-═══════════════════════════════════════════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   ðŸŽ¥ CARROSSEL DE VÃDEOS COM SWIPER - ESTILOS CUSTOMIZADOS
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 /* Grid de cards */
 .portfolio-grid {
@@ -2748,7 +2748,7 @@ html.lite-mode .faq-item{
   margin: 2rem 0;
 }
 
-/* Card de portfólio */
+/* Card de portfÃ³lio */
 .portfolio-slot {
   background: rgba(6, 12, 22, 0.8);
   border: 1px solid rgba(0, 245, 255, 0.12);
@@ -2889,7 +2889,7 @@ html.lite-mode .faq-item{
   padding: 2rem 1rem;
 }
 
-/* Container de vídeo com aspect ratio */
+/* Container de vÃ­deo com aspect ratio */
 .video-container {
   position: relative;
   width: 100%;
@@ -2947,7 +2947,7 @@ html.lite-mode .faq-item{
   opacity: 0.5;
 }
 
-/* Informações do vídeo */
+/* InformaÃ§Ãµes do vÃ­deo */
 .video-info {
   text-align: center;
   margin-top: 1rem;
@@ -2971,7 +2971,7 @@ html.lite-mode .faq-item{
   letter-spacing: 0.2em;
 }
 
-/* Paginação */
+/* PaginaÃ§Ã£o */
 .swiper-pagination {
   bottom: 0 !important;
   padding: 1rem 0;
@@ -2987,7 +2987,7 @@ html.lite-mode .faq-item{
   opacity: 1;
 }
 
-/* Botões de navegação */
+/* BotÃµes de navegaÃ§Ã£o */
 .swiper-button-next,
 .swiper-button-prev {
   color: var(--cyan);
@@ -3064,9 +3064,9 @@ html.lite-mode .faq-item{
 }
 
 
-/* ═══════════════════════════════════════════
-   PORTFÓLIO 3D INTEGRADO
-═══════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   PORTFÃ“LIO 3D INTEGRADO
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .portfolio-grid-3d{
   grid-template-columns:repeat(2,minmax(0,1fr));
   gap:1.5rem;
@@ -3463,7 +3463,7 @@ html.lite-mode .faq-item{
 <div id="loader">
   <div class="loader-logo">DQ</div>
   <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
-  <div class="loader-text">Carregando experiência</div>
+  <div class="loader-text">Carregando experiÃªncia</div>
 </div>
 
 <!-- LETTERBOX -->
@@ -3480,8 +3480,8 @@ html.lite-mode .faq-item{
   <a href="#hero" class="nav-logo">DQ</a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#quem-sou">Sobre</a></li>
-    <li><a href="#servicos">Serviços</a></li>
-    <li><a href="#portfolio">Portfólio</a></li>
+    <li><a href="#servicos">ServiÃ§os</a></li>
+    <li><a href="#portfolio">PortfÃ³lio</a></li>
     <li><a href="#vira-brasil">Vira Brasil</a></li>
     <li><a href="#contato">Contato</a></li>
   </ul>
@@ -3490,9 +3490,9 @@ html.lite-mode .faq-item{
   </button>
 </nav>
 
-<!-- ═══════════════════════════════════════
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
   HERO
-═══════════════════════════════════════ -->
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="hero-noise"></div>
@@ -3500,12 +3500,12 @@ html.lite-mode .faq-item{
 
   <div class="hero-content">
     <div class="hero-panel">
-      <div class="hero-kicker">Vídeo estratégico para marcas que querem crescer</div>
+      <div class="hero-kicker">VÃ­deo estratÃ©gico para marcas que querem crescer</div>
 
       <h1 class="hero-title">
-  Você posta<br>
+  VocÃª posta<br>
   se dedica<br>
-  <span class="text-cyan">mas os resultados não vêm</span>
+  <span class="text-cyan">mas os resultados nÃ£o vÃªm</span>
 </h1>
 
       <div class="hero-dynamic-wrap">
@@ -3515,8 +3515,8 @@ html.lite-mode .faq-item{
       </div>
 
       <div class="hero-actions">
-        <a href="https://wa.me/559391929586" class="btn-primary">Solicitar orçamento</a>
-        <a href="#portfolio" class="btn-secondary">Ver portfólio</a>
+        <a href="https://wa.me/559391929586" class="btn-primary">Solicitar orÃ§amento</a>
+        <a href="#portfolio" class="btn-secondary">Ver portfÃ³lio</a>
       </div>
     </div>
   </div>
@@ -3526,9 +3526,9 @@ html.lite-mode .faq-item{
     <div class="scroll-line"></div>
   </div>
 </section>
-<!-- ═══════════════════════════════════════
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
   PROBLEMA
-═══════════════════════════════════════ -->
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <section id="problema" class="section-overlap">
   <div class="container">
     <div class="problema-head reveal-right">
@@ -3541,7 +3541,7 @@ html.lite-mode .faq-item{
           <svg viewBox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
         </div>
         <div class="card-title">Sem planejamento</div>
-        <p class="card-desc">Vídeos que existem, mas não comunicam, não engajam e não posicionam sua marca onde ela deveria estar.</p>
+        <p class="card-desc">VÃ­deos que existem, mas nÃ£o comunicam, nÃ£o engajam e nÃ£o posicionam sua marca onde ela deveria estar.</p>
       </div>
 
       <div class="glass-card reveal reveal-delay-2">
@@ -3549,23 +3549,23 @@ html.lite-mode .faq-item{
           <svg viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
         </div>
         <div class="card-title">Imagem sem autoridade</div>
-        <p class="card-desc">Sem produção profissional, seu negócio perde credibilidade antes mesmo de falar — o visual fala primeiro.</p>
+        <p class="card-desc">Sem produÃ§Ã£o profissional, seu negÃ³cio perde credibilidade antes mesmo de falar â€” o visual fala primeiro.</p>
       </div>
 
       <div class="glass-card reveal reveal-delay-3">
         <div class="card-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
         </div>
-        <div class="card-title">Concorrente à sua frente</div>
-        <p class="card-desc">Enquanto você hesita, quem já investe em vídeo profissional está fechando os clientes que deveriam ser seus.</p>
+        <div class="card-title">Concorrente Ã  sua frente</div>
+        <p class="card-desc">Enquanto vocÃª hesita, quem jÃ¡ investe em vÃ­deo profissional estÃ¡ fechando os clientes que deveriam ser seus.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
   QUEM SOU
-═══════════════════════════════════════ -->
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <section id="quem-sou">
   <div class="quem-wrap">
     <div class="quem-visual reveal-left">
@@ -3577,7 +3577,7 @@ html.lite-mode .faq-item{
       <div class="quem-provas-mobile" aria-hidden="true">
         <div class="mobile-curve-card mobile-curve-card--1">
           <span class="mobile-curve-value">4 ANOS</span>
-          <span class="mobile-curve-label">DIR. COMUNICAÇÃO UAADESAN</span>
+          <span class="mobile-curve-label">DIR. COMUNICAÃ‡ÃƒO UAADESAN</span>
         </div>
         <div class="mobile-curve-card mobile-curve-card--2">
           <span class="mobile-curve-value">7 ANOS</span>
@@ -3596,12 +3596,12 @@ html.lite-mode .faq-item{
 
     <div class="quem-content reveal-right">
       <h2 class="quem-title">
-        <span class="quem-title-line quem-title-line--small">NÃO ENTREGO APENAS VÍDEO</span>
+        <span class="quem-title-line quem-title-line--small">NÃƒO ENTREGO APENAS VÃDEO</span>
         <span class="quem-title-line quem-title-line--mid">EU ENTREGO</span>
         <span class="quem-title-line quem-title-line--highlight">POSICIONAMENTO</span>
       </h2>
       <p class="quem-subtext">
-        Transformo ideias em conteúdos que geram atenção, autoridade e resultado.
+        Transformo ideias em conteÃºdos que geram atenÃ§Ã£o, autoridade e resultado.
       </p>
       <div class="quem-provas">
         <div class="quem-prova">
@@ -3618,16 +3618,16 @@ html.lite-mode .faq-item{
         </div>
         <div class="quem-prova">
           <span class="quem-prova-valor">4 anos</span>
-          <span class="quem-prova-label">dir. comunicação UAADESAN</span>
+          <span class="quem-prova-label">dir. comunicaÃ§Ã£o UAADESAN</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════
-  SERVIÇOS
-═══════════════════════════════════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  SERVIÃ‡OS
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <section id="servicos" class="section-overlap">
   <div class="container">
     <div class="reveal">
@@ -3639,8 +3639,8 @@ html.lite-mode .faq-item{
         <div class="servico-icon">
           <svg viewBox="0 0 24 24"><path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><circle cx="12" cy="13" r="3"/></svg>
         </div>
-        <div class="servico-title">Publicidade Política</div>
-        <p class="servico-desc">Vídeos estratégicos para campanhas eleitorais. Construção de imagem pública com produção rápida, roteiro claro e comunicação direta que convence.</p>
+        <div class="servico-title">Publicidade PolÃ­tica</div>
+        <p class="servico-desc">VÃ­deos estratÃ©gicos para campanhas eleitorais. ConstruÃ§Ã£o de imagem pÃºblica com produÃ§Ã£o rÃ¡pida, roteiro claro e comunicaÃ§Ã£o direta que convence.</p>
         <div class="servico-tag">+10 campanhas produzidas</div>
       </div>
 
@@ -3649,9 +3649,9 @@ html.lite-mode .faq-item{
         <div class="servico-icon">
           <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
-        <div class="servico-title">Marketing Imobiliário</div>
-        <p class="servico-desc">Tours cinematográficos com drone. Mostre o imóvel ou projeto antes mesmo de ser construído — tecnologia que encanta clientes e acelera vendas.</p>
-        <div class="servico-tag">Tours cinematográficos</div>
+        <div class="servico-title">Marketing ImobiliÃ¡rio</div>
+        <p class="servico-desc">Tours cinematogrÃ¡ficos com drone. Mostre o imÃ³vel ou projeto antes mesmo de ser construÃ­do â€” tecnologia que encanta clientes e acelera vendas.</p>
+        <div class="servico-tag">Tours cinematogrÃ¡ficos</div>
       </div>
 
       <div class="servico-card reveal reveal-delay-3">
@@ -3659,17 +3659,17 @@ html.lite-mode .faq-item{
         <div class="servico-icon">
           <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
         </div>
-        <div class="servico-title">Eventos & Mídia</div>
-        <p class="servico-desc">Cobertura profissional de eventos corporativos, religiosos e culturais. Credenciado como Videomaker Mídia Oficial no Vira Brasil 2025/2026.</p>
-        <div class="servico-tag">Credencial Oficial de Mídia</div>
+        <div class="servico-title">Eventos & MÃ­dia</div>
+        <p class="servico-desc">Cobertura profissional de eventos corporativos, religiosos e culturais. Credenciado como Videomaker MÃ­dia Oficial no Vira Brasil 2025/2026.</p>
+        <div class="servico-tag">Credencial Oficial de MÃ­dia</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════
-  PORTFÓLIO
-═══════════════════════════════════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  PORTFÃ“LIO
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 
 <section id="portfolio">
   <div class="container">
@@ -3688,11 +3688,11 @@ html.lite-mode .faq-item{
 
           <?php if ($temVideos): ?>
             <div class="portfolio-slot-count" style="font-family:'Space Mono',monospace; font-size:0.6rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; margin-top:0.5rem;">
-              <?= count($videosDoSlot) ?> vídeo(s)
+              <?= count($videosDoSlot) ?> vÃ­deo(s)
             </div>
           <?php else: ?>
             <div class="portfolio-slot-empty" style="font-family:'Space Mono',monospace; font-size:0.55rem; color:var(--muted); text-transform:uppercase; opacity:0.6;">
-              Vídeos em breve
+              VÃ­deos em breve
             </div>
           <?php endif; ?>
         </div>
@@ -3709,7 +3709,7 @@ html.lite-mode .faq-item{
     <div class="portfolio-modal-dialog" onclick="event.stopPropagation()">
       <div class="portfolio-modal-header">
         <div class="portfolio-modal-title"><?= $slotInfo['label'] ?></div>
-        <button class="portfolio-modal-close" onclick="fecharCarrossel('<?= $slotKey ?>')" aria-label="Fechar">✕</button>
+        <button class="portfolio-modal-close" onclick="fecharCarrossel('<?= $slotKey ?>')" aria-label="Fechar">âœ•</button>
       </div>
 
       <div class="portfolio-modal-body">
@@ -3730,7 +3730,7 @@ html.lite-mode .faq-item{
                       </iframe>
                     </div>
                     <div class="portfolio-3d-meta">
-                      <span>Vídeo <?= ($index + 1) ?> de <?= count($videosDoSlot) ?></span>
+                      <span>VÃ­deo <?= ($index + 1) ?> de <?= count($videosDoSlot) ?></span>
                     </div>
                   </div>
                 </div>
@@ -3738,14 +3738,14 @@ html.lite-mode .faq-item{
             </div>
 
             <?php if (count($videosDoSlot) > 1): ?>
-              <button class="portfolio-carousel-nav left" onclick="carrosselAnterior('<?= $slotKey ?>')" aria-label="Vídeo anterior">❮</button>
-              <button class="portfolio-carousel-nav right" onclick="carrosselProximo('<?= $slotKey ?>')" aria-label="Próximo vídeo">❯</button>
+              <button class="portfolio-carousel-nav left" onclick="carrosselAnterior('<?= $slotKey ?>')" aria-label="VÃ­deo anterior">â®</button>
+              <button class="portfolio-carousel-nav right" onclick="carrosselProximo('<?= $slotKey ?>')" aria-label="PrÃ³ximo vÃ­deo">â¯</button>
             <?php endif; ?>
           </div>
         <?php else: ?>
           <div class="portfolio-empty-state">
-            <div class="portfolio-empty-icon">📹</div>
-            <p>Nenhum vídeo adicionado ainda para esta categoria.</p>
+            <div class="portfolio-empty-icon">ðŸ“¹</div>
+            <p>Nenhum vÃ­deo adicionado ainda para esta categoria.</p>
             <span>Volte em breve.</span>
           </div>
         <?php endif; ?>
@@ -3754,9 +3754,9 @@ html.lite-mode .faq-item{
   </div>
 <?php endforeach; ?>
 
-<!-- ═══════════════════════════════════════
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
   PROCESSO
-═══════════════════════════════════════ -->
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 
 <section id="processo">
   <div class="processo-wrap">
@@ -3777,40 +3777,40 @@ html.lite-mode .faq-item{
           <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
           <div class="step-num">2</div>
         </div>
-        <div class="step-title">Estratégia</div>
-        <div class="step-desc">Plano de conteúdo personalizado para sua marca</div>
+        <div class="step-title">EstratÃ©gia</div>
+        <div class="step-desc">Plano de conteÃºdo personalizado para sua marca</div>
       </div>
       <div class="step reveal reveal-delay-3">
         <div class="step-dot">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
           <div class="step-num">3</div>
         </div>
-        <div class="step-title">Produção</div>
-        <div class="step-desc">Captação e edição cinematográfica profissional</div>
+        <div class="step-title">ProduÃ§Ã£o</div>
+        <div class="step-desc">CaptaÃ§Ã£o e ediÃ§Ã£o cinematogrÃ¡fica profissional</div>
       </div>
       <div class="step reveal reveal-delay-4">
         <div class="step-dot">
           <svg viewBox="0 0 24 24"><path d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
           <div class="step-num">4</div>
         </div>
-        <div class="step-title">Publicação</div>
-        <div class="step-desc">Gestão de postagens e interações nas redes</div>
+        <div class="step-title">PublicaÃ§Ã£o</div>
+        <div class="step-desc">GestÃ£o de postagens e interaÃ§Ãµes nas redes</div>
       </div>
       <div class="step reveal reveal-delay-4">
         <div class="step-dot">
           <svg viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
           <div class="step-num">5</div>
         </div>
-        <div class="step-title">Análise</div>
-        <div class="step-desc">Monitoramento de resultados e ajustes estratégicos</div>
+        <div class="step-title">AnÃ¡lise</div>
+        <div class="step-desc">Monitoramento de resultados e ajustes estratÃ©gicos</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
   DEPOIMENTOS
-═══════════════════════════════════════ -->
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <section id="depoimentos">
   <div class="container">
     <div class="reveal" style="text-align:center">
@@ -3833,22 +3833,22 @@ html.lite-mode .faq-item{
                 <div class="depo-role"><?= e($d['empresa'] ?? '') ?></div>
               </div>
             </div>
-            <div class="depo-stars">★★★★★</div>
-            <div class="depo-text">“<?= nl2br(e($d['comentario'])) ?>”</div>
+            <div class="depo-stars">â˜…â˜…â˜…â˜…â˜…</div>
+            <div class="depo-text">â€œ<?= nl2br(e($d['comentario'])) ?>â€</div>
           </div>
         <?php endforeach; ?>
       <?php else: ?>
         <div class="depo-waiting reveal">
-          ⏳ Depoimentos reais sendo coletados
+          â³ Depoimentos reais sendo coletados
         </div>
       <?php endif; ?>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
   FAQ
-═══════════════════════════════════════ -->
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <section id="faq">
   <div class="container">
     <div class="reveal" style="text-align:center">
@@ -3857,59 +3857,59 @@ html.lite-mode .faq-item{
     <div class="faq-wrap">
       <div class="faq-item reveal">
         <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-1" id="faq-q-1">
-          Quanto custa uma produção?
+          Quanto custa uma produÃ§Ã£o?
           <div class="faq-icon" aria-hidden="true">+</div>
         </button>
-        <div class="faq-a" id="faq-a-1" role="region" aria-labelledby="faq-q-1" hidden>Cada projeto é único e o investimento varia conforme o escopo, complexidade e tipo de produção. Entre em contato para receber um orçamento personalizado e detalhado para o seu projeto.</div>
+        <div class="faq-a" id="faq-a-1" role="region" aria-labelledby="faq-q-1" hidden>Cada projeto Ã© Ãºnico e o investimento varia conforme o escopo, complexidade e tipo de produÃ§Ã£o. Entre em contato para receber um orÃ§amento personalizado e detalhado para o seu projeto.</div>
       </div>
       <div class="faq-item reveal reveal-delay-1">
         <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-2" id="faq-q-2">
           Quanto tempo leva para entregar?
           <div class="faq-icon" aria-hidden="true">+</div>
         </button>
-        <div class="faq-a" id="faq-a-2" role="region" aria-labelledby="faq-q-2" hidden>O prazo de entrega depende do tipo e complexidade do projeto. Esse detalhe é definido no briefing inicial, onde alinhamos todas as expectativas antes de começar.</div>
+        <div class="faq-a" id="faq-a-2" role="region" aria-labelledby="faq-q-2" hidden>O prazo de entrega depende do tipo e complexidade do projeto. Esse detalhe Ã© definido no briefing inicial, onde alinhamos todas as expectativas antes de comeÃ§ar.</div>
       </div>
       <div class="faq-item reveal reveal-delay-2">
         <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-3" id="faq-q-3">
-          Você atende fora de Santarém?
+          VocÃª atende fora de SantarÃ©m?
           <div class="faq-icon" aria-hidden="true">+</div>
         </button>
-        <div class="faq-a" id="faq-a-3" role="region" aria-labelledby="faq-q-3" hidden>Sim! Já atuei em São Paulo e em outros estados para eventos e campanhas. A distância não é um obstáculo para projetos que merecem produção de qualidade.</div>
+        <div class="faq-a" id="faq-a-3" role="region" aria-labelledby="faq-q-3" hidden>Sim! JÃ¡ atuei em SÃ£o Paulo e em outros estados para eventos e campanhas. A distÃ¢ncia nÃ£o Ã© um obstÃ¡culo para projetos que merecem produÃ§Ã£o de qualidade.</div>
       </div>
       <div class="faq-item reveal reveal-delay-3">
         <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-6" id="faq-q-6">
-          Não tenho experiência diante das câmeras.
+          NÃ£o tenho experiÃªncia diante das cÃ¢meras.
           <div class="faq-icon" aria-hidden="true">+</div>
         </button>
-        <div class="faq-a" id="faq-a-6" role="region" aria-labelledby="faq-q-6" hidden>Sem problema! Dou direção durante toda a gravação — roteiro, postura e forma de falar. A ideia é deixar você confortável para transmitir a mensagem de forma natural e autêntica.</div>
+        <div class="faq-a" id="faq-a-6" role="region" aria-labelledby="faq-q-6" hidden>Sem problema! Dou direÃ§Ã£o durante toda a gravaÃ§Ã£o â€” roteiro, postura e forma de falar. A ideia Ã© deixar vocÃª confortÃ¡vel para transmitir a mensagem de forma natural e autÃªntica.</div>
       </div>
       <div class="faq-item reveal reveal-delay-4">
         <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-7" id="faq-q-7">
-          Você usa inteligência artificial nas produções?
+          VocÃª usa inteligÃªncia artificial nas produÃ§Ãµes?
           <div class="faq-icon" aria-hidden="true">+</div>
         </button>
-        <div class="faq-a" id="faq-a-7" role="region" aria-labelledby="faq-q-7" hidden>Sim! Uso IA na edição e em projetos imobiliários com drone + reconstrução 3D — uma tecnologia que permite mostrar um empreendimento antes mesmo de ser construído.</div>
+        <div class="faq-a" id="faq-a-7" role="region" aria-labelledby="faq-q-7" hidden>Sim! Uso IA na ediÃ§Ã£o e em projetos imobiliÃ¡rios com drone + reconstruÃ§Ã£o 3D â€” uma tecnologia que permite mostrar um empreendimento antes mesmo de ser construÃ­do.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
   CTA FINAL
-═══════════════════════════════════════ -->
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <section id="contato" class="section-overlap">
   <div class="contato-bg"></div>
   <div class="contato-content reveal">
-    <div class="contato-pre">Pronto para o próximo nível?</div>
+    <div class="contato-pre">Pronto para o prÃ³ximo nÃ­vel?</div>
     <h2 class="contato-title">
       Transforme sua marca com<br>
-      <span>vídeos que geram resultado</span>
+      <span>vÃ­deos que geram resultado</span>
     </h2>
     <p class="contato-sub">
-      História, estratégia e emoção em cada produção.<br>
-      Do briefing à entrega — sem surpresas.
+      HistÃ³ria, estratÃ©gia e emoÃ§Ã£o em cada produÃ§Ã£o.<br>
+      Do briefing Ã  entrega â€” sem surpresas.
     </p>
-    <div class="contato-escassez">Agenda limitada · Poucos projetos disponíveis por mês</div>
+    <div class="contato-escassez">Agenda limitada Â· Poucos projetos disponÃ­veis por mÃªs</div>
     <div class="contato-btns">
       <a href="https://wa.me/559391929586" class="btn-primary">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
@@ -3937,7 +3937,7 @@ html.lite-mode .faq-item{
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">DQ</div>
-  <div class="footer-copy">© 2026 Daniel Queiroz — Todos os direitos reservados</div>
+  <div class="footer-copy">Â© 2026 Daniel Queiroz â€” Todos os direitos reservados</div>
 </footer>
 
 <script>
@@ -3946,9 +3946,9 @@ const isLiteMode = document.documentElement.classList.contains('lite-mode');
 const isMobileDevice = document.documentElement.classList.contains('mobile-device');
 
 
-/* ═══════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    CURSOR
-═══════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 const cursor = document.getElementById('cursor');
 const ring = document.getElementById('cursorRing');
 
@@ -3975,9 +3975,9 @@ if (!prefersReducedMotion && !isLiteMode && cursor && ring && window.innerWidth 
   document.body.style.cursor = 'auto';
 }
 
-/* ═══════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    LOADER
-═══════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 window.addEventListener('load', () => {
   const loader = document.getElementById('loader');
   const ltTop = document.getElementById('ltTop');
@@ -3993,9 +3993,9 @@ window.addEventListener('load', () => {
   }, 120);
 });
 
-/* ═══════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    NAV
-═══════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 const nav = document.getElementById('mainNav');
 const navLinks = document.getElementById('navLinks');
 const navToggle = document.getElementById('navToggle');
@@ -4043,9 +4043,9 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-/* ═══════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    SCROLL REVEAL
-═══════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 const revealEls = document.querySelectorAll('.reveal,.reveal-left,.reveal-right');
 
 if ('IntersectionObserver' in window && !prefersReducedMotion) {
@@ -4060,9 +4060,9 @@ if ('IntersectionObserver' in window && !prefersReducedMotion) {
   revealEls.forEach((el) => el.classList.add('visible'));
 }
 
-/* ═══════════════════════════════════════════
-   BACKGROUND POR SEÇÃO
-═══════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   BACKGROUND POR SEÃ‡ÃƒO
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 const sections = document.querySelectorAll('section[id]');
 
 if ('IntersectionObserver' in window) {
@@ -4078,9 +4078,9 @@ if ('IntersectionObserver' in window) {
 }
 
 
-/* ═══════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    SECTION VIEWPORT ACTIVATION
-═══════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 const viewportSections = document.querySelectorAll('section[id]');
 
 if ('IntersectionObserver' in window) {
@@ -4096,9 +4096,9 @@ if ('IntersectionObserver' in window) {
   viewportSections.forEach((section) => sectionFxObserver.observe(section));
 }
 
-/* ═══════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    FAQ
-═══════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 document.querySelectorAll('.faq-q').forEach((btn) => {
   btn.addEventListener('click', () => {
     const item = btn.closest('.faq-item');
@@ -4127,19 +4127,19 @@ document.querySelectorAll('.faq-q').forEach((btn) => {
 });
 
 
-/* ═══════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    HERO TYPING
-═══════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 const heroTypingEl = document.getElementById('heroTyping');
 const heroTypingMessages = [
-  'Você posta',
+  'VocÃª posta',
   'Investe',
   'Se dedica',
-  'Mas os resultados não vêm?',
-  'Não é falta de esforço\nÉ falta de direção',
-  '<span class="accent">Não entrego só vídeos</span>\n<span class="accent">Entrego posicionamento</span>',
-  'Pra que cada conteúdo seu\ntenha propósito, impacto e resultado',
-  'Porque aparecer não basta\nVocê precisa ser lembrado'
+  'Mas os resultados nÃ£o vÃªm?',
+  'NÃ£o Ã© falta de esforÃ§o\nÃ‰ falta de direÃ§Ã£o',
+  '<span class="accent">NÃ£o entrego sÃ³ vÃ­deos</span>\n<span class="accent">Entrego posicionamento</span>',
+  'Pra que cada conteÃºdo seu\ntenha propÃ³sito, impacto e resultado',
+  'Porque aparecer nÃ£o basta\nVocÃª precisa ser lembrado'
 ];
 
 function playHeroTyping(element, messages, typingSpeed = 34, deletingSpeed = 18, holdDelay = 1200, nextDelay = 240) {
@@ -4190,8 +4190,8 @@ function playHeroTyping(element, messages, typingSpeed = 34, deletingSpeed = 18,
       result += `</${stack[j]}>`;
     }
 
-    // ✅ SEGURO: Usar textContent + appendChild para elementos HTML
-    element.innerHTML = '';  // Limpar conteúdo
+    // âœ… SEGURO: Usar textContent + appendChild para elementos HTML
+    element.innerHTML = '';  // Limpar conteÃºdo
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = result;  // Usa DOMParser na verdade
     while (tempDiv.firstChild) {
@@ -4224,7 +4224,7 @@ function playHeroTyping(element, messages, typingSpeed = 34, deletingSpeed = 18,
         renderPartial(markup, charIndex);
         setTimeout(tick, deletingSpeed);
       } else {
-        // ✅ SEGURO: Usar textContent
+        // âœ… SEGURO: Usar textContent
         element.innerHTML = '';
         const cursorSpan = document.createElement('span');
         cursorSpan.className = 'hero-cursor';
@@ -4242,7 +4242,7 @@ function playHeroTyping(element, messages, typingSpeed = 34, deletingSpeed = 18,
 
 if (heroTypingEl) {
   if (prefersReducedMotion) {
-    // ✅ SEGURO: Usar textContent
+    // âœ… SEGURO: Usar textContent
     heroTypingEl.textContent = heroTypingMessages[0];
   } else {
     playHeroTyping(heroTypingEl, heroTypingMessages, 34, 18, 1200, 240);
@@ -4252,9 +4252,9 @@ if (heroTypingEl) {
 
 </script>
 
-// ═══════════════════════════════════════════════════════════════════════════════
-// 🔐 RATE LIMITING (DESCOMENTE PARA ATIVAR)
-// ═══════════════════════════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ðŸ” RATE LIMITING (DESCOMENTE PARA ATIVAR)
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 /*
 class RateLimiter {
     constructor(maxCalls = 100, timeWindow = 60000) {
@@ -4286,22 +4286,22 @@ class RateLimiter {
 // Uso:
 // const limiter = new RateLimiter(100, 60000);  // 100 chamadas por minuto
 // if (!limiter.isAllowed('user-action')) {
-//     alert('Muitas requisições. Tente novamente em alguns segundos.');
+//     alert('Muitas requisiÃ§Ãµes. Tente novamente em alguns segundos.');
 //     return;
 // }
 */
 
 <script>
 const texts = [
-  "Não é falta de esforço",
-  "É falta de direção",
-  "Você está fazendo",
-  "Mas não está construindo",
-  "Conteúdo sem estratégia não gera resultado",
-  "Você aparece",
-  "Mas não é lembrado",
-  "Não é sobre postar mais",
-  "É sobre comunicar melhor",
+  "NÃ£o Ã© falta de esforÃ§o",
+  "Ã‰ falta de direÃ§Ã£o",
+  "VocÃª estÃ¡ fazendo",
+  "Mas nÃ£o estÃ¡ construindo",
+  "ConteÃºdo sem estratÃ©gia nÃ£o gera resultado",
+  "VocÃª aparece",
+  "Mas nÃ£o Ã© lembrado",
+  "NÃ£o Ã© sobre postar mais",
+  "Ã‰ sobre comunicar melhor",
 ];
 
 let index = 0;
@@ -4354,7 +4354,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const words = [
     { text: "Simples", accent: false },
-    { text: "Estratégico", accent: false },
+    { text: "EstratÃ©gico", accent: false },
     { text: "Sem surpresas", accent: true }
   ];
 
@@ -4382,7 +4382,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 <script>
-/* === PORTFÓLIO 3D === */
+/* === PORTFÃ“LIO 3D === */
 function pausarVideosPorSlot(slotKey) {
   document.querySelectorAll(`#carousel-${slotKey} iframe`).forEach((iframe) => {
     try {
@@ -4510,3 +4510,4 @@ window.addEventListener('blur', pausarTodosOsVideos);
 
 </body>
 </html>
+
