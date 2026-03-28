@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 // ═══════════════════════════════════════════════════════════════════════════════
 // 🔐 SECURITY HEADERS - Proteção contra múltiplos tipos de ataque
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -785,7 +785,7 @@ nav.scrolled{
 ═══════════════════════════════════════════ */
 #quem-sou{
   position:relative;
-  overflow:hidden !important; position:relative;
+  overflow:visible;
   min-height:100vh  ;
   padding:6rem 1.25rem;
   display:flex;
@@ -818,7 +818,7 @@ nav.scrolled{
   min-height:inherit;
 
 }
-.quem-visual{ position:relative; overflow:hidden;
+.quem-visual{
   position:relative;
   min-height:100%;
   display:flex;
@@ -1073,7 +1073,7 @@ nav.scrolled{
     line-height:1.42;
     margin-top:.1rem;
   }
-  .quem-visual{ position:relative; overflow:hidden;
+  .quem-visual{
     min-height:400px;
     justify-content:flex-start;
     align-items:flex-end;
@@ -1099,7 +1099,7 @@ nav.scrolled{
   .quem-picture{
     width:420px;
     max-width:none;
-    margin-left:1rem;
+    margin-left:-1.2rem;
     margin-bottom:-1.2rem;
   }
   .quem-provas{
@@ -1141,14 +1141,14 @@ nav.scrolled{
   #quem-sou{
     padding:4rem 1rem 2.2rem;
   }
-  .quem-visual{ position:relative; overflow:hidden;
+  .quem-visual{
     min-height:430px;
     margin-top:-1.25rem;
   }
   .quem-picture{
     width:520px;
     max-width:none;
-    position:absolute; left:50%; top:0; transform:translateX(-50%); z-index:1; pointer-events:none; /* 🛠️ MANUAL: Troque -50% por -40% ou -30% para mover o rosto p/ direita */
+    margin-left:-8rem;
     margin-bottom:-1.2rem;
   }
   .quem-visual::before{
@@ -1640,7 +1640,8 @@ nav.scrolled{
 .contato-bg::before{
   content:'';position:absolute;inset:0;
   background:
-    radial-gradient(ellipse at 70% 50%,rgba(0,245,255,.04) 0%,transparent 50%);
+    radial-gradient(ellipse at 30% 50%,rgba(0,245,255,.05) 0%,transparent 50%),
+    radial-gradient(ellipse at 70% 50%,rgba(255,0,110,.04) 0%,transparent 50%);
 }
 /* Scanlines */
 .contato-bg::after{
@@ -1652,7 +1653,7 @@ nav.scrolled{
 }
 .contato-content{
   position:relative;z-index:1;
-  max-width:720px;margin:0 auto;
+  max-width:700px;margin:0 auto;
   text-align:center;
 }
 .contato-pre{
@@ -1663,25 +1664,24 @@ nav.scrolled{
 }
 .contato-title{
   font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(2rem, 4vw, 3rem);
-  line-height:1.1;letter-spacing:-0.01em;
-  color:rgba(255,255,255,0.9);
-  margin-bottom:1.5rem;
+  font-size:clamp(2.5rem,6vw,4.5rem);
+  line-height:1;letter-spacing:.03em;
+  margin-bottom:1rem;
 }
 .contato-title span{
-  background:linear-gradient(90deg, #22d3ee, #38bdf8);
+  background:linear-gradient(135deg,var(--cyan),var(--magenta));
   -webkit-background-clip:text;background-clip:text;color:transparent;
 }
 .contato-sub{
-  font-size:15px;font-weight:400;
-  color:rgba(255,255,255,0.65);margin-bottom:2.5rem;line-height:1.6;
+  font-size:1.05rem;font-weight:400;
+  color:var(--text-secondary);margin-bottom:2.5rem;line-height:1.7;
   max-width:42ch;margin-left:auto;margin-right:auto;
 }
 .contato-escassez{
   font-family:'Space Mono',monospace;
   font-size:.62rem;letter-spacing:.25em;
   text-transform:uppercase;
-  color:var(--cyan);margin-bottom:2.5rem;
+  color:var(--magenta);margin-bottom:2.5rem;
   font-weight:700;
   animation:subtle-pulse 2s ease-in-out infinite;
 }
@@ -2026,7 +2026,7 @@ section{
 #problema.section-overlap,
 #servicos.section-overlap,
 #contato.section-overlap{
-  overflow:hidden !important; position:relative;
+  overflow:visible;
 }
 #problema.section-overlap{ z-index:5; }
 #servicos.section-overlap{ z-index:4; }
