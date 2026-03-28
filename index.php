@@ -785,7 +785,7 @@ nav.scrolled{
 ═══════════════════════════════════════════ */
 #quem-sou{
   position:relative;
-  overflow:hidden; /* 🛡️ BLINDAGEM: Garante que o texto e cards fiquem no centro */
+  overflow:hidden !important; position:relative;
   min-height:100vh  ;
   padding:6rem 1.25rem;
   display:flex;
@@ -818,7 +818,7 @@ nav.scrolled{
   min-height:inherit;
 
 }
-.quem-visual{
+.quem-visual{ position:relative; overflow:hidden;
   position:relative;
   min-height:100%;
   display:flex;
@@ -1073,7 +1073,7 @@ nav.scrolled{
     line-height:1.42;
     margin-top:.1rem;
   }
-  .quem-visual{
+  .quem-visual{ position:relative; overflow:hidden;
     min-height:400px;
     justify-content:flex-start;
     align-items:flex-end;
@@ -1141,14 +1141,14 @@ nav.scrolled{
   #quem-sou{
     padding:4rem 1rem 2.2rem;
   }
-  .quem-visual{
+  .quem-visual{ position:relative; overflow:hidden;
     min-height:430px;
     margin-top:-1.25rem;
   }
   .quem-picture{
     width:520px;
     max-width:none;
-    margin-left:-8rem; /* 🛠️ MANUAL: Tente -5rem ou -4rem para trazer o rosto pro centro */
+    position:absolute; left:50%; top:0; transform:translateX(-50%); z-index:1; pointer-events:none; /* 🛠️ MANUAL: Troque -50% por -40% ou -30% para mover o rosto p/ direita */
     margin-bottom:-1.2rem;
   }
   .quem-visual::before{
@@ -2026,7 +2026,7 @@ section{
 #problema.section-overlap,
 #servicos.section-overlap,
 #contato.section-overlap{
-  overflow:hidden; /* 🛡️ BLINDAGEM: Garante que o texto e cards fiquem no centro */
+  overflow:hidden !important; position:relative;
 }
 #problema.section-overlap{ z-index:5; }
 #servicos.section-overlap{ z-index:4; }
