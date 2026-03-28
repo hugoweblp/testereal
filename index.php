@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 // ═══════════════════════════════════════════════════════════════════════════════
 // 🔐 SECURITY HEADERS - Proteção contra múltiplos tipos de ataque
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -1148,7 +1148,7 @@ nav.scrolled{
   .quem-picture{
     width:520px;
     max-width:none;
-    margin-left:-8rem;
+    margin-left:-5rem;
     margin-bottom:-1.2rem;
   }
   .quem-visual::before{
