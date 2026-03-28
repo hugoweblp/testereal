@@ -785,7 +785,7 @@ nav.scrolled{
 ═══════════════════════════════════════════ */
 #quem-sou{
   position:relative;
-  overflow:visible;
+  overflow:hidden;
   min-height:100vh  ;
   padding:6rem 1.25rem;
   display:flex;
@@ -1148,7 +1148,7 @@ nav.scrolled{
   .quem-picture{
     width:520px;
     max-width:none;
-    margin-left:-5rem;
+    margin-left:0; transform:translateX(-3rem);
     margin-bottom:-1.2rem;
   }
   .quem-visual::before{
@@ -2026,7 +2026,7 @@ section{
 #problema.section-overlap,
 #servicos.section-overlap,
 #contato.section-overlap{
-  overflow:visible;
+  overflow:hidden;
 }
 #problema.section-overlap{ z-index:5; }
 #servicos.section-overlap{ z-index:4; }
